@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+@import "tailwindcss";
+@import "tailwindcss-safe-area";
+
+@theme {
+  --text-xs: 11px;
+  --text-xs--line-height: 15px;
+  --text-sm: 13px;
+  --text-sm--line-height: 18px;
+  --text-base: 15px;
+  --text-base--line-height: 22px;
+  --text-lg: 17px;
+  --text-lg--line-height: 24px;
+  --text-xl: 22px;
+  --text-xl--line-height: 28px;
+  --text-2xl: 28px;
+  --text-2xl--line-height: 32px;
+  --text-3xl: 36px;
+  --text-3xl--line-height: 38px;
+  --text-4xl: 44px;
+  --text-4xl--line-height: 44px;
+  --text-5xl: 58px;
+  --text-5xl--line-height: 56px;
+}
+
+:root {
+  color-scheme: light;
+  --bg: #FFF8E7;
+  --surface: #FFFCF0;
+  --surface-2: #F5E6C8;
+  --surface-3: #FFECC1;
+  --text: #0A1A2F;
+  --text-soft: #2a3a52;
+  --dim: #8B7E6F;
+  --border: #E8D5B0;
+  --border-strong: #0A1A2F;
+  --accent: #E85D26;
+  --accent-red: #C1121F;
+  --accent-mustard: #FFBA08;
+  --accent-green: #1A3A2A;
+  --labonte-green: #00A651;
+  --labonte-green-dark: #007A3D;
+  --interstate-green: #00A651;
+  --ink: #0A1A2F;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-hard: 4px 4px 0px var(--ink);
+  --shadow-hard-sm: 2px 2px 0px var(--ink);
+  --space-surface: var(--surface);
+  --space-surface-alt: var(--surface-2);
+  --space-muted: var(--dim);
+  --space-border: var(--border);
+  --space-accent: var(--accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0A1120;
+    --surface: #121E33;
+    --surface-2: #1B2A44;
+    --surface-3: #243656;
+    --text: #FFF8E7;
+    --text-soft: #C8BBAA;
+    --dim: #8D8376;
+    --border: #2A3A52;
+    --border-strong: #FFF8E7;
+    --accent: #FF6B35;
+    --accent-red: #FF2A38;
+    --accent-mustard: #FFBA08;
+    --accent-green: #2A5A3A;
+    --labonte-green: #00A651;
+    --labonte-green-dark: #00C15A;
+    --interstate-green: #00A651;
+    --ink: #FFF8E7;
+    --shadow-hard: 4px 4px 0px var(--border);
+    --shadow-hard-sm: 2px 2px 0px var(--border);
+  }
+}
+
+* { font-family: "Space Grotesk", system-ui, sans-serif; }
+h1,h2,h3,h4,.display { font-family: "Anton", Impact, sans-serif; letter-spacing: 0.02em; text-transform: uppercase; }
+.mono { font-family: "JetBrains Mono", monospace; }
+
+.italic-slant { font-style: italic; transform: skewX(-6deg); display: inline-block; }
+.italic-slant-strong { font-style: italic; transform: skewX(-10deg); display: inline-block; }
+
+.checkerboard {
+  background-image: 
+    linear-gradient(45deg, var(--ink) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--ink) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--ink) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--ink) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.checker-orange {
+  background-image: 
+    linear-gradient(45deg, var(--accent) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--accent) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--accent) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--accent) 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
+}
+
+.interstate-checker {
+  background-image:
+    linear-gradient(45deg, var(--labonte-green) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--labonte-green) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--labonte-green) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--labonte-green) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+.checker-green-black {
+  background-color: #00A651;
+  background-image:
+    linear-gradient(45deg, #0A1A2F 25%, transparent 25%),
+    linear-gradient(-45deg, #0A1A2F 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #0A1A2F 75%),
+    linear-gradient(-45deg, transparent 75%, #0A1A2F 75%);
+  background-size: 28px 28px;
+  background-position: 0 0, 0 14px, 14px -14px, -14px 0px;
+}
+.checker-black-green {
+  background-color: #0A1A2F;
+  background-image:
+    linear-gradient(45deg, #00A651 25%, transparent 25%),
+    linear-gradient(-45deg, #00A651 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #00A651 75%),
+    linear-gradient(-45deg, transparent 75%, #00A651 75%);
+  background-size: 28px 28px;
+  background-position: 0 0, 0 14px, 14px -14px, -14px 0px;
+}
+.labonte-stripe {
+  background: repeating-linear-gradient(90deg,
+    var(--labonte-green) 0 18px,
+    #FFF 18px 36px,
+    var(--ink) 36px 54px,
+    #FFF 54px 72px);
+  height: 12px;
+}
+.labonte-stripe-bold {
+  background: repeating-linear-gradient(90deg,
+    #00A651 0 32px,
+    #0A1A2F 32px 64px);
+  height: 42px;
+  position: relative;
+}
+.labonte-top-band {
+  background: #00A651;
+  border-bottom: 3px solid #0A1A2F;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.chrome-18 {
+  background: linear-gradient(180deg, #fefefe 0%, #c0c0c0 45%, #808080 50%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-stroke: 2px var(--ink);
+  filter: drop-shadow(3px 3px 0 var(--labonte-green)) drop-shadow(-1px -1px 0 #fff);
+}
+.chrome-18-green {
+  font-family: "Anton", Impact, sans-serif;
+  color: #00A651;
+  -webkit-text-stroke: 4px white;
+  text-shadow: 
+    4px 4px 0 #0A1A2F,
+    -1px -1px 0 #0A1A2F,
+    0 0 20px rgba(0,166,81,0.35);
+  filter: drop-shadow(0 6px 18px rgba(0,166,81,0.35));
+}
+.bobby-watermark {
+  font-family: "Anton", Impact, sans-serif;
+  color: #00A651;
+  font-weight: 900;
+  line-height: 0.82;
+  -webkit-text-stroke: 8px white;
+  paint-order: stroke fill;
+  text-shadow: 
+    6px 6px 0 #0A1A2F,
+    0 0 0 #0A1A2F,
+    0 12px 32px rgba(0,0,0,0.18);
+}
+.bobby-watermark-outline {
+  font-family: "Anton", Impact, sans-serif;
+  color: transparent;
+  font-weight: 900;
+  line-height: 0.82;
+  -webkit-text-stroke: 3px #0A1A2F;
+}
+.tire-texture {
+  background-image: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.04) 100%),
+    repeating-linear-gradient(90deg, transparent 0 2px, rgba(0,0,0,0.02) 2px 4px);
+}
+.tire-skid {
+  background-image: 
+    repeating-linear-gradient(100deg, transparent 0 18px, rgba(10,26,47,0.18) 18px 20px, transparent 20px 42px),
+    repeating-linear-gradient(102deg, transparent 0 22px, rgba(10,26,47,0.12) 22px 24px, transparent 24px 48px);
+  height: 28px;
+  width: 120%;
+  transform: rotate(-8deg) translateX(-10%);
+}
+.tire-skid-2 {
+  background-image: 
+    repeating-linear-gradient(98deg, transparent 0 14px, rgba(10,26,47,0.14) 14px 16px, transparent 16px 38px),
+    repeating-linear-gradient(100deg, transparent 0 18px, rgba(10,26,47,0.10) 18px 20px, transparent 20px 44px);
+  height: 22px;
+  width: 120%;
+  transform: rotate(-6deg) translateX(-10%);
+}
+.track-asphalt {
+  background-image: radial-gradient(rgba(10,26,47,0.06) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+/* Sunburst via conic */
+.sunburst {
+  background: repeating-conic-gradient(from 0deg at 50% 50%, var(--accent-mustard) 0deg 12deg, transparent 12deg 24deg);
+  opacity: 0.18;
+}
+.sunburst-strong {
+  background: repeating-conic-gradient(from 0deg at 50% 50%, var(--accent-mustard) 0deg 8deg, var(--accent) 8deg 16deg);
+  opacity: 0.15;
+}
+
+/* Ticket perforation effect */
+.ticket-perf {
+  position: relative;
+}
+.ticket-perf::before,
+.ticket-perf::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  background: var(--bg);
+  border: 2px solid var(--border-strong);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.ticket-perf::before { left: -8px; }
+.ticket-perf::after { right: -8px; }
+
+.racing-stripe {
+  background: repeating-linear-gradient(90deg, var(--accent-red) 0 8px, var(--bg) 8px 16px, var(--accent) 16px 24px, var(--bg) 24px 32px);
+  height: 8px;
+}
+
+.paper-shadow {
+  box-shadow: var(--shadow-hard);
+  border: 2px solid var(--border-strong);
+}
+
+.paper-shadow-sm {
+  box-shadow: var(--shadow-hard-sm);
+  border: 1.5px solid var(--border-strong);
+}
+
+.marquee-track {
+  animation: marquee 45s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pulse-slow {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
