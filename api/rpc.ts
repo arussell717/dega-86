@@ -157,12 +157,26 @@ export default async function handler(req:any, res:any){
         return res.json({ ok:true });
       }
       case 'addCost': {
+        const title = args.title ?? args.description ?? 'Expense';
+        const rawAmount = args.amountCents ?? args.amount ?? 0;
+        const amount_cents = Number.isFinite(Number(rawAmount)) ? Math.round(Number(rawAmount) * (args.amountCents != null ? 1 : 100)) : 0;
+        const paid_by_val = args.paidBy ?? args.paid_by ?? null;
+        const paid_by = paid_by_val != null && !isNaN(Number(paid_by_val)) && Number(paid_by_val) !== 0 ? Number(paid_by_val) : null;
+        let split_among_json = args.splitAmongJson ?? null;
+        if (!split_among_json && Array.isArray(args.splitAmong)) split_among_json = JSON.stringify(args.splitAmong);
         const r = await sql`INSERT INTO costs (title, amount_cents, category, paid_by, split_among_json, split_mode, split_custom_json, settled, notes)
-          VALUES (${args.title}, ${Number(args.amountCents)}, ${args.category}, ${args.paidBy?Number(args.paidBy):null}, ${args.splitAmongJson||null}, ${args.splitMode||'all_in'}, ${args.splitCustomJson||null}, ${!!args.settled}, ${args.notes||null}) RETURNING id`;
+          VALUES (${title}, ${amount_cents}, ${args.category||'other'}, ${paid_by}, ${split_among_json}, ${args.splitMode||'all_in'}, ${args.splitCustomJson||null}, ${!!args.settled}, ${args.notes||null}) RETURNING id`;
         return res.json({ id: r.rows[0].id });
       }
       case 'updateCost': {
-        await sql`UPDATE costs SET title=${args.title}, amount_cents=${Number(args.amountCents)}, category=${args.category}, paid_by=${args.paidBy?Number(args.paidBy):null}, split_among_json=${args.splitAmongJson||null}, split_mode=${args.splitMode||'all_in'}, split_custom_json=${args.splitCustomJson||null}, settled=${!!args.settled}, notes=${args.notes||null} WHERE id=${Number(args.id)}`;
+        const title = args.title ?? args.description ?? 'Expense';
+        const rawAmount = args.amountCents ?? args.amount ?? 0;
+        const amount_cents = Number.isFinite(Number(rawAmount)) ? Math.round(Number(rawAmount) * (args.amountCents != null ? 1 : 100)) : 0;
+        const paid_by_val = args.paidBy ?? args.paid_by ?? null;
+        const paid_by = paid_by_val != null && !isNaN(Number(paid_by_val)) && Number(paid_by_val) !== 0 ? Number(paid_by_val) : null;
+        let split_among_json = args.splitAmongJson ?? null;
+        if (!split_among_json && Array.isArray(args.splitAmong)) split_among_json = JSON.stringify(args.splitAmong);
+        await sql`UPDATE costs SET title=${title}, amount_cents=${amount_cents}, category=${args.category||'other'}, paid_by=${paid_by}, split_among_json=${split_among_json}, split_mode=${args.splitMode||'all_in'}, split_custom_json=${args.splitCustomJson||null}, settled=${!!args.settled}, notes=${args.notes||null} WHERE id=${Number(args.id)}`;
         return res.json({ ok:true });
       }
       case 'deleteCost': {
